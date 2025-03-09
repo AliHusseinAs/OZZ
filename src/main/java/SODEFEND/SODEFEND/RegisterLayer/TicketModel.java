@@ -1,6 +1,7 @@
 package SODEFEND.SODEFEND.RegisterLayer;
 
 
+import SODEFEND.SODEFEND.RepositoryLayer.TicketRepo;
 import jakarta.persistence.*;
 
 //import java.util.Date;
@@ -42,8 +43,7 @@ public class TicketModel {
     @Column(name = "gunceleme_tarihi")
     private String guncelemeTarihi;
     @ManyToOne(fetch = FetchType.LAZY)
-    // @JoinColumn(name = "kullanici_ismi", referencedColumnName = "user_name", nullable = false)
-    @JoinColumn(name = "kullanici_ismi", nullable = false)
+    @JoinColumn(name = "kullanici_ismi", referencedColumnName = "user_name", nullable = false)
     private RegisterModel user;
 
     public TicketModel(Long ticketId, String olayTuru, String olayTanimi, String tespitTarihi, String tespitYontemi, boolean olaySisKesMi, String etkilenenSistem, boolean sibOlIz, String onlemDetay, String ekBilgiler, String statu, String adminYorum, String olusturmaTarihi, String guncelemeTarihi, RegisterModel user) {
@@ -63,6 +63,8 @@ public class TicketModel {
         this.guncelemeTarihi = guncelemeTarihi;
         this.user = user;
     }
+
+    public TicketModel() {}
 
     public Long getTicketId() {
         return ticketId;
